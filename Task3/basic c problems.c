@@ -178,4 +178,71 @@ int main()
     return 0;
 }
 ***************************************************************************************
-	
+19)Write a C program to input marks of five subjects Physics, Chemistry, Biology, Mathematics and Computer. 
+Calculate percentage and grade
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    float s1,s2,s3,s4,s5,total,per;
+    printf("Enter your five grades: ");
+    scanf("%f%f%f%f%f",&s1,&s2,&s3,&s4,&s5);
+    total=s1+s2+s3+s4+s5;
+    per=(total/500)*100;
+    printf("Percentage= %.2f%%\n", per);
+    if(per >= 90)
+    {
+        printf("Grade A");
+    }
+    else if(per >= 80)
+    {
+        printf("Grade B");
+    }
+    else if(per >= 70)
+    {
+        printf("Grade C");
+    }
+    else if(per >= 60)
+    {
+        printf("Grade D");
+    }
+    else if(per >= 40)
+    {
+        printf("Grade E");
+    }
+    else
+    {
+        printf("Grade F");
+    }
+    return 0;
+}
+*******************************************************************************************
+20)Write a C program to input basic salary of an employee and calculate gross salary
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    float basic,hra,da,gross;
+    printf("Enter the basic salary: ");
+    scanf("%f", &basic);
+    if(basic<=10000){
+        da=basic*0.8;
+        hra=basic*0.2;
+    }
+    else if(basic>20000){
+        da=basic*0.95;
+        hra=basic*0.3;
+    }
+    else {
+        da=basic*0.9;
+        hra=basic*0.25;
+    }
+    gross=basic+da+hra;
+    printf("Gross salary = %.2f", gross);
+    return 0;
+}
+********************************************************************************************
