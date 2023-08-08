@@ -133,16 +133,25 @@ int main()
 
 int main()
 {
-    int base,exponent,result=1;
-    printf("Enter the base: ");
-    scanf("%d",&base);
-    printf("Enter the exponent: ");
-    scanf("%d",&exponent);
-    for(int i=1; i<=exponent; i++)
+    int pow, base,exp;
+    while(1)
     {
-        result*=base;
+        pow=1;
+        printf("Enter base: ");
+        scanf("%d",&base);
+        printf("Enter exponent: ");
+        scanf("%d",&exp);
+        if(base==0&&exp==0)
+        {
+            printf("Invalid\n\n");
+            continue;
+        }
+        for(int i=0; i<exp; i++)
+        {
+            pow*=base;
+        }
+        printf("%d ^ %d = %d\n\n",base,exp,pow);
     }
-    printf("%d^%d = %d",base,exponent,result);
     return 0;
 }
 ***********************************************************************************************
