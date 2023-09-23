@@ -493,3 +493,302 @@ Descending order: 90 44 10 9 9 8 8 8 7 7 7 5 5 4 4 4 1 1 1 0 0 -1 -5 -6 -6
 Ascending order:  -6 -6 -5 -1 0 0 1 1 1 4 4 4 5 5 7 7 7 8 8 8 9 9 10 44 90
 
 /***************************************************************************************************/
+
+24)Write a C program to subtract two matrices.
+
+#include <stdio.h>
+#include <stdlib.h>
+void array2D_print(int arr[][3],int row,int col);
+void array2D_subtract(int arr1[][3],int arr2[][3],int sub[][3],int row,int col);
+int main()
+{
+    int arr1[3][3]={{1,2,3},
+                   {4,5,6},
+                   {7,8,9}};
+    int arr2[3][3]={{3,9,1},
+                    {6,0,20},
+                    {2,7,10}};
+    int sub[3][3];
+    array2D_subtract(arr1,arr2,sub,3,3);
+    array2D_print(sub,3,3);
+    return 0;
+}
+void array2D_subtract(int arr1[][3],int arr2[][3],int sub[][3],int row,int col)
+{
+    int i,j;
+    for(i=0;i<row;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            sub[i][j]=arr1[i][j]-arr2[i][j];
+        }
+    }
+}
+void array2D_print(int arr[][3],int row,int col)
+{
+    int i,j;
+    for(i=0;i<row;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            printf("%3d ",arr[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+ -OUTPUT
+ -2  -7   2
+ -2   5 -14
+  5   1  -1
+  
+/***************************************************************************************************/
+ 
+27)Write a C program to check whether two matrices are equal or not.
+ 
+#include <stdio.h>
+#include <stdlib.h>
+int array2D_compare(int arr1[][3],int arr2[][3],int row,int col);
+int main()
+{
+    int arr1[3][3]={{1,2,3},
+                    {4,5,6},
+                    {7,8,9}};
+    int arr2[3][3]={{1,2,3},
+                    {4,0,6},
+                    {7,8,9}};
+    if(array2D_compare(arr1,arr2,3,3))
+    {
+        printf("Matrices are equal\n");
+    }
+    else
+    {
+        printf("Matrices are not equal\n");
+    }
+    return 0;
+}
+int array2D_compare(int arr1[][3],int arr2[][3],int row,int col)
+{
+    int i,j;
+    for(i=0;i<row;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            if(arr1[i][j]!=arr2[i][j])
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+-OUTPUT
+Matrices are not equal
+
+/***************************************************************************************************/
+
+30)Write a C program to find sum of each row and column of a matrix.
+
+#include <stdio.h>
+#include <stdlib.h>
+void matrix_rowSum(int arr[][3],int row,int col);
+void matrix_columnSum(int arr[][3],int row,int col);
+int main()
+{
+    int arr[3][3]={{1,2,3},
+                   {4,5,6},
+                   {7,8,9}};
+    matrix_rowSum(arr,3,3);
+    matrix_columnSum(arr,3,3);
+
+    return 0;
+}
+
+void matrix_rowSum(int arr[][3],int row,int col)
+{
+    int i,j,sum;
+    printf("Sum of each row: ");
+    for(i=0;i<row;i++)
+    {
+        sum=0;
+        for(j=0;j<col;j++)
+        {
+            sum+=arr[i][j];
+        }
+        printf("%d ",sum);
+    }
+    printf("\n");
+}
+void matrix_columnSum(int arr[][3],int row,int col)
+{
+    int i,j,sum;
+    printf("Sum of each column: ");
+    for(i=0;i<row;i++)
+    {
+        sum=0;
+        for(j=0;j<col;j++)
+        {
+            sum+=arr[j][i];
+        }
+        printf("%d ",sum);
+    }
+    printf("\n");
+}
+
+-OUTPUT
+Sum of each row: 6 15 24
+Sum of each column: 12 15 18
+
+/***************************************************************************************************/
+
+37)Write a C program to find determinant of a matrix.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int row,col,det;
+    printf("Enter row size: ");
+    scanf("%d",&row);
+    printf("Enter column size: ");
+    scanf("%d",&col);
+    int arr[row][col];
+    printf("Enter elements of matrix: ");
+    for(int i=0;i<row;i++)
+    {
+        for(int j=0;j<col;j++)
+        {
+            scanf("%d",&arr[i][j]);
+        }
+    }
+    if(row==col)
+    {
+        if(row==2)
+        {
+            det=(arr[0][0]*arr[1][1])-(arr[0][1]*arr[1][0]);
+        }
+        else if(row==3)
+        {
+            det=(arr[0][0]*(arr[1][1]*arr[2][2]-arr[1][2]*arr[2][1]))-
+                (arr[0][1]*(arr[1][0]*arr[2][2]-arr[1][2]*arr[2][0]))+
+                (arr[0][2]*(arr[1][0]*arr[2][1]-arr[1][1]*arr[2][0]));
+        }
+    }
+    else
+    {
+        printf("Invalid....Not a square matrix");
+    }
+    printf("Determinant = %d",det);
+    return 0;
+}
+
+-OUTPUT
+Enter row size: 3
+Enter column size: 3
+Enter elements of matrix: 6
+1
+1
+4
+-2
+5
+2
+8
+7
+Determinant = -306
+
+/***************************************************************************************************/
+
+40)C program to check symmetric matrix
+
+#include <stdio.h>
+#include <stdlib.h>
+int matrixIsSymmetric(int arr[][3],int row);
+int main()
+{
+    int arr[3][3]={{1,2,3},
+                   {2,5,9},
+                   {3,9,8}};
+    if(matrixIsSymmetric(arr,3))
+    {
+        printf("Matrix is symmetric");
+    }
+    else
+    {
+        printf("Matrix is not symmetric");
+    }
+
+    return 0;
+}
+int matrixIsSymmetric(int arr[][3],int row)
+{
+    int i,j;
+    for(i=0;i<row;i++)
+    {
+        for(j=0;i!=j;j++)
+        {
+            if(arr[i][j]!=arr[j][i])
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+-OUTPUT
+Matrix is symmetric
+
+method2 -------------------------------------
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void matrix_transpose(int arr[][3],int arrT[][3],int row,int col);
+int array2D_compare(int arr1[][3],int arr2[][3],int row,int col);
+
+int main()
+{
+    int arr[3][3]={{1,2,3},
+                   {2,4,5},
+                   {3,5,8}};
+    int arrT[3][3];
+    matrix_transpose(arr,arrT,3,3);
+    if(array2D_compare(arr,arrT,3,3))
+    {
+        printf("Matrix is symmetric");
+    }
+    else
+    {
+        printf("Matrix is not symmetric");
+    }
+    return 0;
+}
+void matrix_transpose(int arr[][3],int arrT[][3],int row,int col)
+{
+    int i,j;
+    for(i=0;i<row;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            arrT[i][j]=arr[j][i];
+        }
+    }
+}
+int array2D_compare(int arr1[][3],int arr2[][3],int row,int col)
+{
+    int i,j;
+    for(i=0;i<row;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            if(arr1[i][j]!=arr2[i][j])
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
