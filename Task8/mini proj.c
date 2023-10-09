@@ -12,6 +12,7 @@ int main()
     printf("Enter the number of students......NOTE->Maximum number == 20 students :");
     scanf("%d",&num);
     data_input(name,scores,num);
+	Rankings(name,scores,num);
     return 0;
 }
 void data_input(char name[][20],int scores[][6],int num)
