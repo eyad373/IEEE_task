@@ -96,11 +96,11 @@ int main()
     {
         printf("Strings are equal\n");
     }
-    else if(state==-1)
+    else if(state<0)
     {
         printf("First string is lexicographically smaller than the second\n");
     }
-    else if(state==1)
+    else 
     {
         printf("First string is lexicographically greater than the second\n");
     }
@@ -108,19 +108,19 @@ int main()
 }
 int string_compare(char*str1,char*str2)
 {
-    int i,flag=0;
+    int i;
     for(i=0;str1[i];i++)
     {
         if(str1[i]<str2[i])
         {
-            flag=-1;
+            return -1;
         }
         else if(str1[i]>str2[i])
         {
-            flag=1;
+            return 1;
         }
     }
-    return flag;
+    return 0;
 }
 
 -OUTPUT
